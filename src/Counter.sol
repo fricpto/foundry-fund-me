@@ -1,14 +1,26 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
 
 contract Counter {
-    uint256 public number;
+    error AlwaysRevert();
 
-    function setNumber(uint256 newNumber) public {
-        number = newNumber;
+    uint256 public count = 0;
+
+    function increment() public returns (uint256) {
+        count += 1;
+        return count;
     }
 
-    function increment() public {
-        number++;
+    function reset() public {
+        count = 0;
+    }
+
+    function alwaysRevert() public pure {
+        revert AlwaysRevert();
+    }
+
+    function alwaysRevertWithString() public pure {
+        revert("always revert");
     }
 }
