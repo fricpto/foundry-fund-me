@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 import {Script} from "lib/forge-std/src/Script.sol";
-import {MockV3Aggregator} from "../test/mocks/MockV3Aggregator.sol";
+import {MockV3Aggregator} from "../test/mock/MockV3Aggregator.sol";
 contract HelperConfig is Script {
-    // if we are on a local anvil we deploy mocks
+    // if we are on a local anvil we deploy mock
     // Otherwise grab the existing address from the live network
     struct NetworkConfig {
         address pricefeed; // ETH/USD price feed address

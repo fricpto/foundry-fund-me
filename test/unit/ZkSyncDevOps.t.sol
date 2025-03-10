@@ -21,7 +21,7 @@ contract ZkSyncDevOps is Test, ZkSyncChainChecker, FoundryZkSyncChecker {
 
     // You'll need `ffi=true` in your foundry.toml to run this test
     // // Remove the `onlyVanillaFoundry`, then run `foundryup-zksync` and then
-    // // `forge test --mt testZkSyncFoundryFails --zksync`
+    // // `forge test --match-test testZkSyncFoundryFails --zksync`
     // // and this will fail!
     // function testZkSyncFoundryFails() public onlyVanillaFoundry {
     //     bool exists = vm.keyExistsJson('{"hi": "true"}', ".hi");

@@ -6,13 +6,11 @@ import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
 import {FundMe} from "../../src/FundMe.sol";
 import {Test, console} from "forge-std/Test.sol";
 
-// import {MockV3Aggregator} from "../mocks/MockV3Aggregator.sol";
-
 contract FundMeTest is Test {
     FundMe public fundMe;
     address USER = makeAddr("user");
 
-    uint256 public constant SEND_VALUE = 0.1 ether; // just a value to make sure we are sending enough! 100000000000000000 10^17
+    uint256 public constant SEND_VALUE = 0.1 ether; // just a value to make sure we are sending enough! 100,000,000,000,000,000 10^17
     uint256 public constant STARTING_BALANCE = 10 ether;
     uint256 public constant GAS_PRICE = 1;
 
@@ -20,18 +18,6 @@ contract FundMeTest is Test {
         DeployFundMe deployFundMe = new DeployFundMe();
         fundMe = deployFundMe.run();
         vm.deal(USER, STARTING_BALANCE);
-
-        /*         if (!isZkSyncChain()) {
-            DeployFundMe deployer = new DeployFundMe();
-            (fundMe, helperConfig) = deployer.deployFundMe();
-        } else {
-            MockV3Aggregator mockPriceFeed = new MockV3Aggregator(
-                DECIMALS,
-                INITIAL_PRICE
-            );
-            fundMe = new FundMe(address(mockPriceFeed));
-        }
-        vm.deal(USER, STARTING_USER_BALANCE); */
     }
 
     function testMinimumDollarIsFive() public {
@@ -46,15 +32,6 @@ contract FundMeTest is Test {
         uint256 version = fundMe.getVersion();
         assertEq(version, 4);
     }
-
-    /*     function testPriceFeedSetCorrectly() public {
-        address retreivedPriceFeed = address(fundMe.getPriceFeed());
-        address expectedPriceFeed = helperConfig.activeNetworkConfig();
-             address expectedPriceFeed = helperConfig
-            .getConfigByChainId(block.chainid)
-            .priceFeed;
-        assertEq(retreivedPriceFeed, expectedPriceFeed);
-    } */
 
     function testFundFailsWithoutEnoughETH() public {
         vm.expectRevert(); // the next transaction should be sent by the user
